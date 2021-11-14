@@ -7,6 +7,7 @@ This version allows you to change
 - Number of generations
 - Game speed
 - Colors of cells
+- Read initial grid from file
 
 The game only uses [pygame](https://www.pygame.org/docs/) library for GUI
 ###### The 1.0 version was released on 14.11.2021
