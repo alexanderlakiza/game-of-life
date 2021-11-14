@@ -3,12 +3,14 @@ import pygame
 
 
 class GUI:
-    def __init__(self, game: GameOfLife, cell_size: int = 25, speed: int = 10) -> None:
+    def __init__(self, game: GameOfLife, cell_size: int = 25, speed: int = 10, color1='green', color2='white') -> None:
         self.game = game  # Игра
         self.cell_size = cell_size  # Размер клеток
         self.speed = speed  # Скорость протекания игры
         self.screen_size = game.cols * self.cell_size, game.rows * self.cell_size  # Размер игрового окна
         self.screen = pygame.display.set_mode(self.screen_size)  # Экран игры
+        self.living_color = pygame.Color(color1)  # Цвет живой клетки
+        self.dead_color = pygame.Color(color2)  # Цвет мёртвой клетки
 
     def draw_lines(self) -> None:
         """
@@ -34,9 +36,9 @@ class GUI:
                 a = self.cell_size - 1
                 b = self.cell_size - 1
                 if self.game.curr_generation[i][j] == 1:
-                    pygame.draw.rect(self.screen, pygame.Color('green'), (x, y, a, b))
+                    pygame.draw.rect(self.screen, self.living_color, (x, y, a, b))
                 elif self.game.curr_generation[i][j] == 0:
-                    pygame.draw.rect(self.screen, pygame.Color('white'), (x, y, a, b))
+                    pygame.draw.rect(self.screen, self.dead_color, (x, y, a, b))
 
     def run(self) -> None:
         """
@@ -87,5 +89,6 @@ class GUI:
 if __name__ == '__main__':
     life = GameOfLife((20, 20), max_generations=150)
     # life = life.from_file("examples/01.txt")  # Пример чтения из файла
-    gui = GUI(life, speed=10, cell_size=30)
+    gui = GUI(life, speed=1, cell_size=30, color1='darkviolet', color2='lavenderblush')
+    # Доступные цвета https://pygame-zero.readthedocs.io/en/latest/colors_ref.html#id2
     gui.run()
