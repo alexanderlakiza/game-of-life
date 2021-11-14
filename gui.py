@@ -89,6 +89,6 @@ class GUI:
 if __name__ == '__main__':
     life = GameOfLife((20, 20), max_generations=150)
     # life = life.from_file("examples/01.txt")  # Пример чтения из файла
-    gui = GUI(life, speed=1, cell_size=30, color1='darkviolet', color2='lavenderblush')
+    gui = GUI(life, speed=10, cell_size=30, color1='darkviolet', color2='lavenderblush')
     # Доступные цвета https://pygame-zero.readthedocs.io/en/latest/colors_ref.html#id2
     gui.run()
